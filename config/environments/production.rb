@@ -76,5 +76,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Set Action Cable server url for consumer connection
+  config.action_cable.allowed_request_origins = ENV['ACTIONCABLE_ORIGINS']
+                                                .try(:split, ',')
   config.action_cable.url = ENV['ACTIONCABLE_URL']
 end
