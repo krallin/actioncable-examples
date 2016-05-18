@@ -12,7 +12,10 @@ module Authentication
 
     def authenticate_user(user_id)
       if authenticated_user = User.find_by(id: user_id)
-        cookies.signed[:user_id] ||= user_id
+        cookies.signed[:user_id] = {
+          value: user_id,
+          domain: ENV['COOKIE_DOMAIN']
+        }
         @current_user = authenticated_user
       end
     end
